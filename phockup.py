@@ -128,6 +128,14 @@ Example:
     )
 
     parser.add_argument(
+        '--enable-timezone-detection',
+        action='store_true',
+        help="""\
+            Enables time zone detection. In case your times are off by time zone, this might fix it.
+            """,
+    )
+
+    parser.add_argument(
         '-c',
         '--max-concurrency',
         type=int,
@@ -391,7 +399,8 @@ def main(options):
         output_prefix=options.output_prefix,
         output_suffix=options.output_suffix,
         from_date=options.from_date,
-        to_date=options.to_date
+        to_date=options.to_date,
+        enable_timezone_detection=options.enable_timezone_detection,
     )
 
 
