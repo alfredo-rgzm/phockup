@@ -34,7 +34,7 @@ class Date:
             date_object['minute'] if date_object.get('minute') else 0,
             date_object['second'] if date_object.get('second') else 0)
 
-    def from_exif(self, exif, timestamp=None, user_regex=None, date_field=None, enable_timezone_detection=False):
+    def from_exif(self, exif, timestamp=None, user_regex=None, date_field=None, timezone_detection=False):
         if date_field:
             keys = date_field.split()
         else:
@@ -59,7 +59,7 @@ class Date:
             parsed_date = {'date': None, 'subseconds': ''}
 
         # apply TimeZone if available
-        if enable_timezone_detection is True and exif.get('TimeZone') is not None and isinstance(exif['TimeZone'], str):
+        if timezone_detection is True and exif.get('TimeZone') is not None and isinstance(exif['TimeZone'], str):
             timezonedata = exif['TimeZone'].split(':')
             if timezonedata and len(timezonedata) == 2:
                 parsed_date['date'] = parsed_date['date'] + timedelta(hours=int(timezonedata[0]), minutes=int(timezonedata[1]))

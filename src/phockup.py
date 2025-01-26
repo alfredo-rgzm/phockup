@@ -55,7 +55,7 @@ class Phockup:
         self.dry_run = args.get('dry_run', False)
         self.progress = args.get('progress', False)
         self.max_depth = args.get('max_depth', -1)
-        self.enable_timezone_detection = args.get('enable_timezone_detection', False)
+        self.timezone_detection = args.get('timezone_detection', False)
         # default to concurrency of one to retain existing behavior
         self.max_concurrency = args.get("max_concurrency", 1)
 
@@ -387,7 +387,7 @@ but looking for '{self.file_type}'"
         date = None
         if target_file_type in ['image', 'video']:
             date = Date(filename).from_exif(exif_data, self.timestamp, self.date_regex,
-                                            self.date_field, self.enable_timezone_detection)
+                                            self.date_field, self.timezone_detection)
             output = self.get_output_dir(date)
             target_file_name = self.get_file_name(filename, date)
             if not self.original_filenames:
